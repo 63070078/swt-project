@@ -1,71 +1,17 @@
 <template>
   <div id="app">
     <nav class="navbar" role="navigation" aria-label="main navigation">
-  <div class="navbar-brand">
-    <a class="navbar-item" href="https://bulma.io">
-      <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28">
-    </a>
-
-    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-    </a>
-  </div>
-
-  <div id="navbarBasicExample" class="navbar-menu">
-    <div class="navbar-start">
-      <a class="navbar-item">
-        Home
-      </a>
-
-      <a class="navbar-item">
-        Documentation
-      </a>
-
-      <div class="navbar-item has-dropdown is-hoverable">
-        <a class="navbar-link">
-          More
-        </a>
-
-        <div class="navbar-dropdown">
-          <a class="navbar-item">
-            About
-          </a>
-          <a class="navbar-item">
-            Jobs
-          </a>
-          <a class="navbar-item">
-            Contact
-          </a>
-          <hr class="navbar-divider">
-          <a class="navbar-item">
-            Report an issue
-          </a>
-        </div>
-      </div>
-    </div>
-
-    <div class="navbar-end">
-      <div class="navbar-item">
-        <div class="buttons">
-          <a class="button is-primary">
-            <strong>Sign up</strong>
-          </a>
-          <a class="button is-light">
-            Log in
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
-</nav>
-<DashboardComponent
-  :pm25="pm25"
-  :temperature="temperature"
-  :humidity="humidity"
-  :windSpeed="windSpeed"
-/>
+      <!-- ... (ไม่มีการแก้ไขในส่วนนี้) -->
+    </nav>
+    <p>
+      PM2.5: {{ pm25 }}
+    </p>
+    <DashboardComponent
+      :pm25="pm25"
+      :temperature="temperature"
+      :humidity="humidity"
+      :windSpeed="windSpeed"
+    />
 
     <ChartPage :chartData="chartData" :chartOptions="chartOptions" />
   </div>
@@ -123,9 +69,9 @@ export default {
   },
   methods: {
     fetchData() {
-      axios.get('https://api.airvisual.com/v2/city?city=Bangkok&state=Bangkok&country=Thailand&key=9552d3af-4bb6-4b64-a2c0-b7c5640b3ba5')
+      axios.get('https://api.airvisual.com/v2/city?city=Bangkok&state=Bangkok&country=Thailand&key=9552d3af-4bb6-4b64-a2c0-b7c5640b3ba5&history=24')
         .then(res => {
-          const { pm25, temperature, humidity, wind_speed } = res.data.data.current.pollution
+          const { pm25, temperature, humidity, wind_speed } = res.data.data.current.weather
           this.pm25 = pm25
           this.temperature = temperature
           this.humidity = humidity
