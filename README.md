@@ -2,7 +2,18 @@
 
 ## Project setup
 ```
+cd swt-project
 npm install
+
+npm i vue-chartjs
+
+npm i axios
+
+npm i chart.js
+
+npm i vue-router
+
+npm i cors
 ```
 
 ### Compiles and hot-reloads for development
